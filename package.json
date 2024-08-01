@@ -6,7 +6,12 @@
     "lib": "lib"
   },
   "scripts": {
+    "start": "node CauseApp.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5"
   },
   "keywords": [],
   "author": "",
