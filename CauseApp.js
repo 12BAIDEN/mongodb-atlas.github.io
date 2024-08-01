@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('YOUR_MONGODB_ATLAS_CONNECTION_STRING', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongodb+srv://Christopher:chriscollins@cluster0.qyupon7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0insta, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const caseSchema = new mongoose.Schema({
   caseNumber: Number,
