@@ -597,6 +597,65 @@
     document.addEventListener('DOMContentLoaded', function() {
         updateCurrencySymbol();
     });
+
+      npm 
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('https://YOUR_RENDER_URL/causes')
+                .then(response => response.json())
+                .then(data => {
+                    const causesContainer = document.getElementById('causes-container');
+                    const causes = [
+                        { name: 'Education', description: 'Education For Children', img: 'img/courses-1.jpg', link: 'education.html', shortDesc: 'As a donation organization committed to making a tangible difference...', goal: 10000, raised: 9542 },
+                        { name: 'Basic Amenities', description: 'Ensure food, Water and Clothing', img: 'img/courses-2.jpg', link: 'food.html', shortDesc: 'Ensuring that everyone has access to food, water, and clothing...', goal: 10000, raised: 9542 },
+                        { name: 'Healthy Life', description: 'Ensure Medical Treatment', img: 'img/courses-3.jpg', link: 'health.html', shortDesc: 'We believe that access to medical treatment is a fundamental right...', goal: 10000, raised: 9542 }
+                    ];
+                    
+                    causes.forEach((cause, index) => {
+                        const delay = index * 0.2;
+                        const progressPercent = (cause.raised / cause.goal) * 100;
+
+                        const causeItem = document.createElement('div');
+                        causeItem.classList.add('col-lg-4', 'col-md-6', 'wow', 'fadeInUp');
+                        causeItem.setAttribute('data-wow-delay', `${delay}s`);
+
+                        causeItem.innerHTML = `
+                            <div class="causes-item d-flex flex-column bg-white border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                                <div class="text-center p-4 pt-0">
+                                    <div class="d-inline-block bg-primary text-white rounded-bottom fs-5 pb-1 px-3 mb-4">
+                                        <small>${cause.name}</small>
+                                    </div>
+                                    <h5 class="mb-3">${cause.description}</h5>
+                                    <p class="hidden-words">${cause.shortDesc}</p>
+                                    <div class="causes-progress bg-light p-3 pt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="text-dark">$${cause.goal} <small class="text-body">Goal</small></p>
+                                            <p class="text-dark">$${cause.raised} <small class="text-body">Raised</small></p>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="${progressPercent}" aria-valuemin="0" aria-valuemax="100">
+                                                <span>${Math.round(progressPercent)}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="position-relative mt-auto">
+                                    <img class="img-fluid" src="${cause.img}" alt="">
+                                    <div class="causes-overlay">
+                                        <a class="btn btn-outline-primary" href="${cause.link}">
+                                            Read More
+                                            <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        causesContainer.appendChild(causeItem);
+                    });
+                });
+        });
 </script>
 
   
